@@ -1,9 +1,12 @@
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const connectDB = async () => {
   
   try {
-    const connect = await mongoose.connect('mongodb://sulemanwaraich094:vasion123@cluster0-shard-00-00.1bqjj.mongodb.net:27017,cluster0-shard-00-01.1bqjj.mongodb.net:27017,cluster0-shard-00-02.1bqjj.mongodb.net:27017/?replicaSet=atlas-pobgge-shard-0&ssl=true&authSource=admin')
+    const connect = await mongoose.connect(process.env.DB_URL)
     console.log("Connection successfull!", connect.connection.host);
     
 

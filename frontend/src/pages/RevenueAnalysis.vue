@@ -8,14 +8,27 @@
       <StatsCard title="Total Revenue" :value="`$${data.totalRevenue}`" icon="💰" />
     </div>
 
-    <!-- Filter -->
-    <div class="mb-4">
-      <label class="mr-2 font-medium">Select View:</label>
-      <select v-model="selectedView" class="p-2 border rounded">
-        <option value="daily">Daily</option>
-        <option value="weekly">Weekly</option>
-        <option value="monthly">Monthly</option>
-      </select>
+   <!-- Filters -->
+    <div class="flex flex-col sm:flex-row gap-4 mb-6">
+      <!-- Time View Filter -->
+      <div>
+        <label class="mr-2 font-medium">Select Time View:</label>
+        <select v-model="selectedView" class="p-2 border rounded">
+          <option value="daily">Daily</option>
+          <option value="weekly">Weekly</option>
+          <option value="monthly">Monthly</option>
+        </select>
+      </div>
+
+      <!-- Category Filter -->
+      <div>
+        <label class="mr-2 font-medium">Product Category:</label>
+        <select v-model="selectedCategory" class="p-2 border rounded">
+          <option value="">All</option>
+          <option value="electronics">Electronics</option>
+          <option value="fashion">Fashion</option>
+        </select>
+      </div>
     </div>
 
     <!-- Chart -->
@@ -26,7 +39,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed, onMounted, watch } from 'vue';
 import StatsCard from '../components/StatsCard.vue';
 import BarChart from '../components/BarChart.vue';
 import axios from 'axios';
@@ -38,11 +51,16 @@ const data = ref({
 });
 
 const selectedView = ref('daily');
+const selectedCategory = ref('');
 
-onMounted(async () => {
-  const res = await axios.get('http://localhost:3000/api/revenue');
+const fetchData = async () => {
+  const query = selectedCategory.value ? `?category=${selectedCategory.value}` : '';
+  const res = await axios.get(`http://localhost:3000/api/revenue${query}`);
   data.value = res.data;
-});
+};
+
+watch([selectedView, selectedCategory], fetchData);
+onMounted(fetchData);
 
 const chartData = computed(() => ({
   labels: Array(data.value.trends[selectedView.value]?.length).fill('').map((_, i) => `#${i + 1}`),

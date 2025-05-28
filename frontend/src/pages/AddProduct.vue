@@ -94,15 +94,16 @@ const submitProduct = async () => {
 
     message.value = '✅ Product added successfully!'; 
   } catch (error) {
-    message.value = '❌ Error adding product';
+    message.value = '❌ Error adding product & all fields are required!';
     console.error(error);
   }
 };
 
   const resetForm = () => {
-  product.value = { name: '', description: '', price: null, stock: null };
-  imageFile.value = null;
-  previewUrl.value = '';
+    product.value = { name: '', description: '', price: null, stock: null };
+    imageFile.value = null;
+    previewUrl.value = '';
+    message.value ='';
   };
   
 </script>
