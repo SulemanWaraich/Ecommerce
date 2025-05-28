@@ -135,15 +135,15 @@ backend/
   
 📌 Key Implementation Details
 
-#Data Visualization
--Interactive line charts for revenue trends
--Bar charts for category-wise sales
--Pie charts for inventory distribution
+# Data Visualization
+- Interactive line charts for revenue trends
+- Bar charts for category-wise sales
+- Pie charts for inventory distribution
 
-#Responsive Design
--Fully responsive layout that works on desktop and tablet
--Mobile-friendly navigation
--Adaptive component sizing
+# Responsive Design
+- Fully responsive layout that works on desktop and tablet
+- Mobile-friendly navigation
+- Adaptive component sizing
 
 ## 🤝 How to Contribute
 -Fork the repository
