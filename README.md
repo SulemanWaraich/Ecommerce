@@ -25,7 +25,7 @@
 
 ## 🛠️ Tech Stack
 
-| Layer       | Technology                     | Purpose                     |
+| Layer       | Technology                     | Purpose                      |
 |-------------|--------------------------------|------------------------------|
 | Frontend    | Vue 3 + Vite                   | Fastest rendering            |
 | Charts      | Chart.js                       | Organized Data               |
@@ -72,7 +72,7 @@ The application will be available at http://localhost:3000
 📊 Sample Data
 - The dashboard comes pre-loaded with realistic sample data including:
 
-#Revenue Analytics:
+# Revenue Analytics:
 Total Orders: 1,200
 Total Revenue: $56,000
 
@@ -82,7 +82,7 @@ Weekly: [3200, 4500, 3100, 6000]
 Monthly: [15000, 20000, 16000]
 
 Category Breakdown:
-Electronics:
+# Electronics:
 Orders: 400
 Revenue: $20,000
 
@@ -91,7 +91,7 @@ Daily: [100, 140, 60, 300, 200, 360, 250]
 Weekly: [1200, 1800, 1000, 2000]
 Monthly: [5000, 7000, 8000]
 
-Fashion:
+# Fashion:
 Orders: 300
 Revenue: $15,000
 
@@ -100,18 +100,21 @@ Daily: [70, 110, 50, 200, 150, 300, 120]
 Weekly: [900, 1100, 1200, 1400]
 Monthly: [4000, 6000, 5000]
 
-Product Inventory:
--5 sample products across 2 categories (Electronics and Fashion) with:
--Real-time stock level tracking
--Price and sales history
--Category-based filtering
+# Product Inventory:
+- 5 sample products across 2 categories (Electronics and Fashion) with:
+- Real-time stock level tracking
+- Price and sales history
+- Category-based filtering
 
+```
 The data structure supports:
 ✅ Dynamic filtering by category
 ✅ Real-time trend visualization
 ✅ Multi-period comparisons (daily/weekly/monthly)
 ✅ Category performance benchmarking
+```
 
+```
 🔧 Project Structure
 Ecommerce/
 frontend/
@@ -128,11 +131,13 @@ frontend/
 
 backend/
   ├── controllers/
+  ├── config/
   ├── models/
   ├── routes/
   ├── uploads/
   └── app.js
-  
+```
+
 📌 Key Implementation Details
 
 # Data Visualization
@@ -146,7 +151,7 @@ backend/
 - Adaptive component sizing
 
 ## 🤝 How to Contribute
--Fork the repository
--Create a new branch for your feature/fix
--Commit your changes with descriptive messages
--Push to your fork and submit a pull request
+- Fork the repository
+- Create a new branch for your feature/fix
+- Commit your changes with descriptive messages
+- Push to your fork and submit a pull request
