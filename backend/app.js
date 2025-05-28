@@ -8,13 +8,16 @@ import dotenv from 'dotenv'
 
 dotenv.config();
 
-// const PORT = 3000;
 const app = express();
 const __dirname = path.resolve();
 
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: "*",
+  credentials: true,
+}));
+
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use("/api/products", router)
@@ -26,6 +29,6 @@ connectDB()
     console.log(`App listen at port: ${process.env.PORT}`);
   });
 })
-.catch(() => {
-  console.log("mongodb connection failed");
+.catch((err) => {
+  console.log("mongodb connection failed", err.message);
 })

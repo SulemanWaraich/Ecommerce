@@ -2,15 +2,19 @@
   <div>
     <h2 class="text-2xl font-semibold mb-4">📊 Revenue Analysis</h2>
 
-    <!-- Stat Cards -->
+    <!-- Statistics Card -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
       <StatsCard title="Total Orders" :value="data.totalOrders" icon="🛒" />
-      <StatsCard title="Total Revenue" :value="`$${data.totalRevenue}`" icon="💰" />
+      <StatsCard
+        title="Total Revenue"
+        :value="`$${data.totalRevenue}`"
+        icon="💰"
+      />
     </div>
 
-   <!-- Filters -->
+    <!-- Filters -->
     <div class="flex flex-col sm:flex-row gap-4 mb-6">
-      <!-- Time View Filter -->
+      <!-- Time Filter -->
       <div>
         <label class="mr-2 font-medium">Select Time View:</label>
         <select v-model="selectedView" class="p-2 border rounded">
@@ -20,7 +24,7 @@
         </select>
       </div>
 
-      <!-- Category Filter -->
+      <!-- Categories Filter -->
       <div>
         <label class="mr-2 font-medium">Product Category:</label>
         <select v-model="selectedCategory" class="p-2 border rounded">
@@ -31,7 +35,7 @@
       </div>
     </div>
 
-    <!-- Chart -->
+    <!-- Chart to show data -->
     <div class="bg-white p-4 rounded shadow">
       <BarChart :chart-data="chartData" />
     </div>
@@ -39,23 +43,27 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, watch } from 'vue';
-import StatsCard from '../components/StatsCard.vue';
-import BarChart from '../components/BarChart.vue';
-import axios from 'axios';
+import { ref, computed, onMounted, watch } from "vue";
+import StatsCard from "../components/StatsCard.vue";
+import BarChart from "../components/BarChart.vue";
+import axios from "axios";
+
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 const data = ref({
   totalOrders: 0,
   totalRevenue: 0,
-  trends: { daily: [], weekly: [], monthly: [] }
+  trends: { daily: [], weekly: [], monthly: [] },
 });
 
-const selectedView = ref('daily');
-const selectedCategory = ref('');
+const selectedView = ref("daily");
+const selectedCategory = ref("");
 
 const fetchData = async () => {
-  const query = selectedCategory.value ? `?category=${selectedCategory.value}` : '';
-  const res = await axios.get(`http://localhost:3000/api/revenue${query}`);
+  const query = selectedCategory.value
+    ? `?category=${selectedCategory.value}`
+    : "";
+  const res = await axios.get(`${backendUrl}/api/revenue${query}`);
   data.value = res.data;
 };
 
@@ -63,11 +71,15 @@ watch([selectedView, selectedCategory], fetchData);
 onMounted(fetchData);
 
 const chartData = computed(() => ({
-  labels: Array(data.value.trends[selectedView.value]?.length).fill('').map((_, i) => `#${i + 1}`),
-  datasets: [{
-    label: `Revenue (${selectedView.value})`,
-    data: data.value.trends[selectedView.value],
-    backgroundColor: '#3b82f6'
-  }]
+  labels: Array(data.value.trends[selectedView.value]?.length)
+    .fill("")
+    .map((_, i) => `#${i + 1}`),
+  datasets: [
+    {
+      label: `Revenue (${selectedView.value})`,
+      data: data.value.trends[selectedView.value],
+      backgroundColor: "#3b82f6",
+    },
+  ],
 }));
 </script>
