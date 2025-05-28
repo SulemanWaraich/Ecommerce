@@ -1,6 +1,6 @@
-import {Router} from 'mongoose';
 import express from 'express'
-import {getProducts, createProduct, updateStock} from '../../controllers/productController.js';
+import {getProducts, createProduct, updateStock} from '../controllers/productController.js';
+import {upload} from '../middleware/multer.middleware.js'
 
 const router = express.Router()
 

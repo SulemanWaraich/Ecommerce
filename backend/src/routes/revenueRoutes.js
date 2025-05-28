@@ -1,8 +1,8 @@
 import express from 'express';
-import {getRevenueData} from '../../controllers/revenueController.js'
+import {getRevenueData} from '../controllers/revenueController.js'
 
-const router = express.Router();
+const router1 = express.Router();
 
-router.get('/', getRevenueData);
+router1.get('/', getRevenueData);
 
-export {router}
+export {router1}

@@ -18,3 +18,5 @@ const getRevenueData = async (req, res) => {
   
     res.json(data);
 }
+
+export {getRevenueData}

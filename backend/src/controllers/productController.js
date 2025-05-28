@@ -1,4 +1,4 @@
-import productModel from '../models/Product.model.js';
+import {productModel}  from '../models/Product.model.js';
 
 const getProducts = async (req, res) => {
   try {
@@ -24,9 +24,9 @@ const createProduct = async (req, res) => {
   
     const product = await productModel.create({name, description, price, stock, image});
   
-    res.status(200).json({msg: "product created successfully."}, product)
+    res.status(200).json({msg: "product created successfully.", product})
   } catch (error) {
-    res.status(500).json({error: error.msg})
+    res.status(500).json({error: error.message})
   }
 }
 
